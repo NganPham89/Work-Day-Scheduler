@@ -8,7 +8,7 @@ let todayDate = dayjs();
 $('#currentDay').text(todayDate.format('dddd, MMMM D (hh:mm:ss)'));
 
 
-let currentTime = dayjs().format('hh:mm');
+let currentTime = dayjs().format('H');
 
 
 
@@ -16,7 +16,8 @@ let currentTime = dayjs().format('hh:mm');
 
 
 
-//9-5 is 8 hours, 5pm is 17, need to make 8 blocks, add class="time-block" to each block
+
+//9-5 is 8 hours, 5pm is 17, need to make 9 blocks, add class="time-block" to each block
 
 let allTimeSlots = ["09:00", "10:00", "11:00", "12:00", "01:00", "02:00", "03:00", "04:00", "05:00"]
 
@@ -27,7 +28,7 @@ function generateBlock() {
     let newDescription = $('<textarea>');
     let newButton = $('<button>');
     $('.container-fluid').append(newTimeBlock.append(newHourLabel, newDescription, newButton));
-    newTimeBlock.attr({ id: "h" + [i + 9], class: "row time-block" });
+    newTimeBlock.attr({ id: [i+9], class: "row time-block" });
     newHourLabel.attr("class", "col-2 col-md-1 hour text-center py-3");
     newDescription.attr({ id: "hr" + [i + 9], class: "col-8 col-md-10 description", row: "3" });
     newButton.attr({ class: "btn saveBtn col-2 col-md-1", 'aria-label': "save" });
@@ -37,11 +38,29 @@ function generateBlock() {
     } else {
       newHourLabel.text(allTimeSlots[i] + " PM");
     }
-  }
+  };
+  retrieveDescription();
 }
 
 generateBlock();
 
+let timeBlock = $(".time-block");
+
+$(timeBlock).each(function() {
+  let timeBlockHour = $(this).attr("id");
+  console.log(timeBlockHour);
+  console.log(currentTime);
+  if (timeBlockHour === currentTime) {
+    $(this).addClass("present");
+    $(this).removeClass("future", "past");
+  } else if (timeBlockHour > currentTime) {
+    $(this).addClass("future");
+    $(this).removeClass("present", "past");
+  } else if (timeBlockHour < currentTime) {
+    $(this).addClass("past");
+    $(this).removeClass("present", "future");
+  }
+});
 
 let saveButton = $(".saveBtn");
 
@@ -53,7 +72,7 @@ saveButton.click(function () {
 
 function retrieveDescription() {
   for (var i = 0; i < allTimeSlots.length; i++) {
-    let descriptionKey = "h" + [i + 9];
+    let descriptionKey = [i+9];
     $("#hr" + [i+9]).val(localStorage.getItem(descriptionKey));
   }
 }
@@ -61,12 +80,6 @@ function retrieveDescription() {
 
 
 
-/* let timeBlockPlan = {
-  description: timeBlockDescription,
-  time: currentTime
-};
-tempPlanContainer.push(timeBlockPlan);
-console.log(tempPlanContainer); */
 
 
 
