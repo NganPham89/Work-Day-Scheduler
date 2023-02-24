@@ -12,12 +12,33 @@ textarea {
   padding: 10px;
 }
 
+.header-block {
+  text-align: center;
+}
+
+.clear-button {
+  border: none;
+  border-radius: 10px;
+  background-color: #06aed5;
+  padding: .5% 1%;
+  color: white;
+  font-weight: bold;
+}
+
+.container-fluid {
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 70%;
+}
+
 .description {
   white-space: pre-wrap;
+  font-weight: bold;
 }
 
 .time-block {
   border-radius: 15px;
+  margin: .1% 0;
 }
 
 .row {
@@ -27,7 +48,12 @@ textarea {
 .hour {
   background-color: #ffffff;
   color: #000000;
-  border-top: 1px dashed #000000;
+  border: 1px dashed #000000;
+  border-right: 0;
+  border-radius: 10px;
+  justify-content: center;
+  align-self: center;
+  height: 140%;
 }
 
 .past {
