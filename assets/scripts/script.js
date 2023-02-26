@@ -1,7 +1,13 @@
 
-let todayDate = dayjs();
+let todayDate = $("#currentDay");
 
-$('#currentDay').text(todayDate.format('dddd, MMMM Do YYYY (hh:mm A)'));
+function displayDate() {
+  let currentDateAndTime = dayjs().format('dddd, MMMM Do YYYY (hh:mm:ss A)');
+  todayDate.text(currentDateAndTime);
+}
+
+displayDate();
+setInterval(displayDate, 1000);
 
 let allTimeSlots = ["09:00", "10:00", "11:00", "12:00", "01:00", "02:00", "03:00", "04:00", "05:00"]
 
@@ -68,3 +74,4 @@ $(clearButton).click(function () {
   localStorage.clear();
   $(".description").val("");
 });
+
