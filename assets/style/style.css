@@ -25,6 +25,10 @@ textarea {
   font-weight: bold;
 }
 
+.clear-button:hover {
+  color: black;
+}
+
 .container-fluid {
   border: 2px solid black;
   border-radius: 10px;
