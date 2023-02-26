@@ -28,7 +28,8 @@ textarea {
 .container-fluid {
   border: 1px solid black;
   border-radius: 10px;
-  width: 70%;
+  width: 60%;
+  padding: 1% 0;
 }
 
 .description {
